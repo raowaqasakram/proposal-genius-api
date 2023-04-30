@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Proposal Genius</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        $('#generate').click(function() {
+          var userProfile = $('#userProfile').val();
+          var jobDescription = $('#jobDescription').val();
+          var type = $('#type').val();
+
+          $('#output-text').val("Generating " + type + "...");
+          $('#output').show();
+
+          $.ajax({
+            type: "POST",
+            url: "/generate-proposal",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            data: JSON.stringify({
+              "userProfile": userProfile,
+              "jobDescription": jobDescription,
+              "type": type
+            }),
+            dataType: "json",
+            success: function(response) {
+              $('#output-text').val(response.message);
+            },
+            error: function(response) {
+              $('#output-text').val(response.responseJSON.message);
+            }
+          });
+        });
+
+        $('#copy').click(function() {
+          $('#output-text').select();
+          document.execCommand("copy");
+          alert("Text copied to clipboard.");
+        });
+      });
+    </script>
+    <style>
+      label {
+        font-weight: bold;
+      }
+      textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        resize: vertical;
+      }
+      select {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        background-color: #fff;
+      }
+      button {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #3e8e41;
+      }
+    </style>
+  </head>
+  <body>
+ <div style="position:absolute; top:0; right:0; display: flex; align-items: center;">
+  <span>This is made with <span style="color: red;">&hearts;</span> by <strong>Rao Waqas Akram</strong> </span>
+  <span style="margin-left: 10px;">(<a href="https://www.linkedin.com/in/raowaqasakram/">LinkedIn</a>, <a href="https://github.com/raowaqasakram">GitHub</a>)</span>
+</div>
+    <div>
+     <br><br><label for="userProfile">Enter User Profile:</label><br>
+      <textarea id="userProfile" rows="5"></textarea>
+    </div>
+    <div>
+      <br>
+      <label for="jobDescription">Enter Job Description:</label><br>
+      <textarea id="jobDescription" rows="5"></textarea>
+    </div>
+    <div>
+      <br>
+      <label for="type">Type:</label>
+      <select id="type">
+        <option value="JOB_PROPOSAL">Job Proposal</option>
+        <option value="COVER_LETTER">Cover Letter</option>
+      </select>
+    </div>
+    <div>
+      <br>
+      <button id="generate">Generate</button>
+    </div>
+    <div id="output" style="display:none;">
+      <br>
+      <label for="output-text">Output:</label><br>
+      <textarea id="output-text" rows="15"></textarea><br>
+      <button id="copy">Copy to Clipboard</button>
+    </div>
+  </body>
+</html>

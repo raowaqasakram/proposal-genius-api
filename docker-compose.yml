@@ -1,0 +1,11 @@
+version: '3'
+services:
+  proposal-genius:
+    image: raowaqasakram/proposal-genius:1.0
+    ports:
+      - "8080:8080"
+    environment:
+      - logging.level.root=INFO
+      - openai.model=gpt-3.5-turbo
+      - openai.api.url=https://api.openai.com/v1/chat/completions
+      - openai.api.key=<your-openAI-key-here>
