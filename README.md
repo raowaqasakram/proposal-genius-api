@@ -34,7 +34,7 @@ Proposal Genius is using OpenAI's API `/v1/chat/completions` which supports mult
 openai.model=gpt-3.5-turbo
 ````
 
-### API Endpoint
+## API Endpoint
 
 The `/generate-proposal` endpoint supports the following HTTP method:
 
