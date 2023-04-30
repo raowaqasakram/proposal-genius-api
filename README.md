@@ -65,3 +65,10 @@ The following parameters are required to generate a proposal or cover letter:
     "message": "<Generated Proposal Here>"
 }    
 ````
+
+## About Me
+
+This is developed with ❤️ by Rao Waqas Akram. 
+Visit my blog on [Hashnode](https://raowaqasakram.hashnode.dev/)
+Connect with me on [LinkedIn](https://www.linkedin.com/in/raowaqasakram/)
+
