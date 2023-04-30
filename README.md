@@ -1,6 +1,6 @@
 # Proposal Genius
 
-Proposal Genius is a Spring Boot web application that provides an API endpoint for generating job proposals and cover letters for freelancing platforms like Upwork.
+Proposal Genius is a Spring Boot web application that provides an API endpoint for generating job proposals and cover letters for freelancing platforms like Upwork. [Complete Article](https://raowaqasakram.hashnode.dev/create-freelance-job-proposals-and-cover-letters-with-the-help-of-openai-and-docker-free)
 
 ## Usage
 
@@ -9,7 +9,7 @@ To use Proposal Genius, simply run the Spring Boot application and send a reques
 
 ## Configuration
 
-Proposal Genius uses OpenAI's GPT-3 language model to generate proposals and cover letters. To use the application, you will need to provide your OpenAI API key and specify which GPT-3 model to use.
+Proposal Genius uses OpenAI's GPT language model to generate proposals and cover letters. To use the application, you will need to provide your OpenAI API key and specify which GPT model to use.
 
 ### OpenAI API Key
 
@@ -26,9 +26,9 @@ To set the `openai.api.key` property, add it to the `application.properties` fil
 openai.api.key=<YOUR_API_KEY_HERE>
 ````
 
-### GPT-3 Model
+### OpenAI Model
 
-Proposal Genius supports multiple GPT-3 models, each with different capabilities and performance characteristics. To specify which model to use, set the `openai.model` property in the `application.properties` file. For example, to use the "GPT-3.5 Turbo" model, add the following line to your `application.properties` file:
+Proposal Genius is using OpenAI's API `/v1/chat/completions` which supports multiple GPT models, each with different capabilities and performance characteristics. To specify which model to use, set the `openai.model` property in the `application.properties` file. For example, to use the "GPT-3.5 Turbo" model, add the following line to your `application.properties` file:
 
 ````
 openai.model=gpt-3.5-turbo
@@ -65,6 +65,7 @@ The following parameters are required to generate a proposal or cover letter:
     "message": "<Generated Proposal Here>"
 }    
 ````
+
 
 ## License
 
