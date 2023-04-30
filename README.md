@@ -65,8 +65,3 @@ The following parameters are required to generate a proposal or cover letter:
     "message": "<Generated Proposal Here>"
 }    
 ````
-
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
