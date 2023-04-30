@@ -2,8 +2,7 @@ package com.waqas.akram.proposalgeniusapi.controller;
 
 import com.waqas.akram.proposalgeniusapi.dto.ProposalRequestDTO;
 import com.waqas.akram.proposalgeniusapi.service.ProposalService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,12 +18,8 @@ import static com.waqas.akram.proposalgeniusapi.constant.AppConstants.GENERATE_P
  * The chat request is created with a prompt specified as a request parameter.
  */
 @RestController
+@Slf4j
 public class ProposalController {
-    /**
-     * A logger instance for the ProposalController class.
-     */
-    private static final Logger LOG = LoggerFactory.getLogger(ProposalController.class);
-
     /**
      * The ProposalService instance used to create and send chat requests.
      */
@@ -41,7 +36,7 @@ public class ProposalController {
      */
     @PostMapping(value = GENERATE_PROPOSAL_API_ENDPOINT)
     public ResponseEntity<Object> generateProposal(@RequestBody ProposalRequestDTO proposalRequest) {
-        LOG.info("Received POST request on {} endpoint with proposalRequest: {}", GENERATE_PROPOSAL_API_ENDPOINT, proposalRequest);
+        log.info("Received POST request on {} endpoint with proposalRequest: {}", GENERATE_PROPOSAL_API_ENDPOINT, proposalRequest);
         return service.generateProposal(proposalRequest);
     }
 }

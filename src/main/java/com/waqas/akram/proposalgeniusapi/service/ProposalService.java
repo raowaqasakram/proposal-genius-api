@@ -2,8 +2,7 @@ package com.waqas.akram.proposalgeniusapi.service;
 
 
 import com.waqas.akram.proposalgeniusapi.dto.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,12 +18,8 @@ import static com.waqas.akram.proposalgeniusapi.constant.AppConstants.*;
  * A service class that handles chat requests and responses by interacting with the OpenAI API.
  */
 @Service
+@Slf4j
 public class ProposalService {
-    /**
-     * A logger instance for the ProposalService class.
-     */
-    private static final Logger LOG = LoggerFactory.getLogger(ProposalService.class);
-
     /**
      * The RestTemplate instance used to make HTTP requests to the OpenAI API.
      */
@@ -61,7 +56,7 @@ public class ProposalService {
 
         OpenAiChatRequest request = getOpenAiChatRequest(proposalRequest);
 
-        LOG.info("Payload POST to OpenAI API: {}", request);
+        log.info("Payload POST to OpenAI API: {}", request);
         try {
             OpenAiChatResponse response = restTemplate.postForObject(apiUrl, request, OpenAiChatResponse.class);
 
@@ -69,7 +64,7 @@ public class ProposalService {
                 return ResponseEntity.noContent().build();
             }
 
-            LOG.debug("Complete OpenAiChatResponse from OpenAI API : {}", response);
+            log.debug("Complete OpenAiChatResponse from OpenAI API : {}", response);
             String responseMessageContentFromChatGPT = response.getChoices()
                     .stream()
                     .findFirst()
@@ -80,7 +75,7 @@ public class ProposalService {
             return ResponseEntity.ok()
                     .body(new ResponseMessage(responseMessageContentFromChatGPT));
         } catch (RestClientException e) {
-            LOG.error("Failed to retrieve response from OpenAI API: {}", e.getMessage());
+            log.error("Failed to retrieve response from OpenAI API: {}", e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(new ResponseMessage("Failed to retrieve response from OpenAI API: " + e.getMessage()));
         }

@@ -26,8 +26,8 @@ public interface AppConstants {
      */
     String GENERATE_PROPOSAL_API_ENDPOINT = "/generate-proposal";
 
-
+    /**
+     * The name of the index HTML file.
+     */
     String INDEX_HTML_FILE_NAME = "index.html";
-
-
 }
